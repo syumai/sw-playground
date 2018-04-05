@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dummy router</title>
+  <script>
+    const initialize = () => {
+      const status = document.getElementById('status');
+      const content = document.getElementById('content');
+
+      const initializeServiceWorker = async () => {
+        try {
+          const registration = await navigator.serviceWorker.register('sw.js', {
+            scope: './'
+          });
+          let serviceWorker;
+          if (registration.installing) {
+            serviceWorker = registration.installing;
+            status.textContent = 'Installing';
+          } else if (registration.waiting) {
+            serviceWorker = registration.waiting;
+            status.textContent = 'Waiting';
+          } else if (registration.active) {
+            serviceWorker = registration.active;
+            status.textContent = 'Active';
+          }
+          if (serviceWorker) {
+            console.log(serviceWorker.state);
+            serviceWorker.addEventListener('statechange', function (e) {
+              console.log(e.target.state);
+            });
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      if (navigator.serviceWorker) {
+        initializeServiceWorker();
+      } else {
+        content.textContent = 'Service Worker is not supported on this browser.'
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initialize);
+  </script>
+</head>
+
+<body>
+  <main>
+    <h1>Dummy router</h1>
+
+    <section>
+      <div class="description">
+        This page responds with any routes.
+      </div>
+    </section>
+
+    <section>
+      <h2>ServiceWorker status</h2>
+      <div id="status"></div>
+    </section>
+
+    <section id="content">
+      <h2>Current page: 0</h2>
+      <a href="/sw-playground/dummy-router/pages/1.html">NextPage: 1</a>
+    </section>
+  </main>
+</body>
+
+</html>
