@@ -15,7 +15,14 @@ const template = `
 
     <section>
       <div class="description">
-        This page responds with any routes.
+        <ul>
+          <li>
+            This page responds to any routes.
+          </li>
+          <li>
+            <a href="https://github.com/syumai/sw-playground/tree/master/dummy-router">View code on GitHub</a>
+          </li>
+        </ul>
       </div>
     </section>
 
