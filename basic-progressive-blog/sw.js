@@ -1,9 +1,9 @@
 const CACHE_NAME = 'basic-progressive-blog-v1';
 const resources = [
-  '/index.html',
-  '/template.html',
-  '/index.js',
-  '/articlesData.json',
+  'index.html',
+  'template.html',
+  'index.js',
+  'articlesData.json',
 ];
 
 const renderLinks = articles =>
@@ -29,8 +29,6 @@ const renderArticle = async ({ id, title, date, content }, links) => {
 };
 
 const openCache = async () => await caches.open(CACHE_NAME);
-
-const basePath = 'sw-playground/basic-progressive-blog';
 
 const loadResourceFromCache = async resourcePath => {
   const cache = await openCache();
