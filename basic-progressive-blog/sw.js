@@ -105,5 +105,15 @@ self.addEventListener('fetch', e => {
         }
       })()
     );
+  } else {
+    e.respondWith(
+      (async () => {
+        const response = await caches.match(e.request);
+        if (response) {
+          return response;
+        }
+        return fetch(e.request);
+      })()
+    );
   }
 });
