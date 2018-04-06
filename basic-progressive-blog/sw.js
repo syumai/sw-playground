@@ -14,13 +14,14 @@ const renderLinks = articles =>
 </li>`
     )
     .join('\n');
+
 let template;
 
 const renderArticle = async ({ id, title, date, content }, links) => {
   if (!template) {
     template = await loadTemplate();
   }
-  template
+  return template
     .replace(/\{\{title\}\}/g, title)
     .replace(/\{\{date\}\}/g, new Date(date).toString())
     .replace(/\{\{content\}\}/g, content)
@@ -82,10 +83,9 @@ self.addEventListener('fetch', e => {
         const urlParts = url.split('/');
         const id = parseInt(urlParts[urlParts.length - 1], 10);
         const article = articles.find(article => article.id === id);
-        let response;
         if (article) {
           const links = renderLinks(articles);
-          const html = renderArticle(article, links);
+          const html = await renderArticle(article, links);
           return new Response(html, {
             status: 200,
             headers: {
