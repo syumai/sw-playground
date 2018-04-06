@@ -1,5 +1,6 @@
 const CACHE_NAME = 'basic-progressive-blog-v1';
 const resources = [
+  './',
   'index.html',
   'template.html',
   'index.js',
