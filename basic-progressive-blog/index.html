@@ -5,22 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Dummy router</title>
+  <title>Basic progressive blog</title>
   <script src="./index.js"></script>
 </head>
 
 <body>
   <main>
-    <h1>Dummy router</h1>
+    <h1>Basic progressive blog</h1>
 
     <section>
       <div class="description">
         <ul>
           <li>
-            This page responds to any routes.
+            This app is caching only JSON data of blog articles.
           </li>
           <li>
-            <a href="https://github.com/syumai/sw-playground/tree/master/dummy-router">View code on GitHub</a>
+            Generated html pages are also available (but not cached).
+          </li>
+          <li>
+            <a href="https://github.com/syumai/sw-playground/tree/master/basic-blog-sample">View code on GitHub</a>
           </li>
         </ul>
       </div>
@@ -31,9 +34,9 @@
       <div id="status"></div>
     </section>
 
-    <section id="content">
-      <h2>Current page: 0</h2>
-      <a href="/sw-playground/dummy-router/pages/1.html">NextPage: 1</a>
+    <section>
+      <h2>Articles</h2>
+      <ul id="articleList"></ul>
     </section>
   </main>
 </body>
