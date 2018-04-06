@@ -55,10 +55,12 @@ const loadArticles = async () => {
 
 self.addEventListener('install', e => {
   console.log('Install event:', e);
-  e.waitUntil(async () => {
-    const cache = await openCache();
-    return cache.addAll(resources);
-  });
+  e.waitUntil(
+    (async () => {
+      const cache = await openCache();
+      return cache.addAll(resources);
+    })()
+  );
 });
 
 self.addEventListener('activate', async e => {
